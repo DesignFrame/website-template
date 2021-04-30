@@ -44,7 +44,12 @@ directory in this plugin, and that's because it's built directly into the WordPr
 keep the files in this repository minimal. Only files that are _custom to this website_ or _configuration for this site_
 should exist in this repository.
 
-But don't fret! It is pretty easy to add a plugin or theme to your WordPress container. Follow these steps:
+This plugin automatically includes the [Underpin](https://github.com/alexstandiford/underpin) library as a WordPress
+Must-Use plugin. This makes it possible to use the [Underpin Plugin Boilerplate](https://github.com/alexstandiford/underpin-plugin-boilerplate) and
+[Underpin Theme Boilerplate](https://github.com/alexstandiford/underpin-theme-boilerplate) to create custom themes and
+plugins for this site.
+
+To add a plugin to your site, follow these steps:
 
 1. Create a directory for your custom plugin inside this repository, and set up your plugin just like you normally would
    if it were to be built directly in WordPress' `wp-content/plugins` directory.
