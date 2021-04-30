@@ -5,7 +5,8 @@ This is a website repository. It houses all of the files and configuration neces
 ## Setup
 
 1. Clone this repository
-1. Run `docker-compose up -d`
+1. Run `docker-compose up -d && docker-compose composer composer install`. This will setup the container, and install
+   the libraries included in `composer.json`
 1. Visit `localhost:3000` to set up and run this website.
 
 ## Composer
@@ -20,7 +21,7 @@ file's `require` object:
 
 ```JSON
 "require":{
-  "wpackagist-plugin/wordpress-seo": "*"
+"wpackagist-plugin/wordpress-seo": "*"
 }
 ```
 
@@ -53,9 +54,15 @@ To add a plugin to your site, follow these steps:
 
 1. Create a directory for your custom plugin inside this repository, and set up your plugin just like you normally would
    if it were to be built directly in WordPress' `wp-content/plugins` directory.
-1. Update `docker-compose.yml`, and add a new volume to your WordPress container, and link it to the directory
+
+Set up the Underpin plugin boilerplate, and remove the git history.
+```bash
+git clone git@github.com:alexstandiford/underpin-plugin-boilerplate ./plugin-name && cd ./plugin-name && rm -rf .git
+```
+
+2. Update `docker-compose.yml`, and add a new volume to your WordPress container, and link it to the directory
    in which the files should be placed.
-   
+
 For example, if your plugin directory is `./plugin-name`, the `volumes` in the `wordpress` container would look like this:
 
 ```yml
@@ -65,3 +72,5 @@ For example, if your plugin directory is `./plugin-name`, the `volumes` in the `
 
 This works in the same fashion with themes, only instead of adding it to the `plugins`, you would add it to the `themes`
 directory when adding the new image.
+
+3. Restart your server with `docker-compose up -d`
