@@ -3,7 +3,7 @@ services:
     image: wordpress
     restart: always
     ports:
-      - 8001:80
+      - 3000:80
     depends_on:
       - db
     environment:
@@ -16,13 +16,14 @@ services:
       - site:/var/www/html
       - ./composer.json:/var/www/html/composer.json
       - ./mu-plugin.php:/var/www/html/wp-content/mu-plugins/mu-plugin.php
+      - ./plugin-name:/var/www/html/wp-content/plugins/plugin-name
   db:
     image: mariadb
     restart: always
     environment:
       MYSQL_DATABASE: wp
       MYSQL_USER: wp
-      MYSQL_PASSWORD: ex015PECT+doc
+      MYSQL_PASSWORD: wp-test
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - db:/var/lib/mysql
@@ -47,7 +48,6 @@ services:
       WORDPRESS_TABLE_PREFIX: wp_
     volumes:
       - site:/var/www/html
-
 volumes:
   site:
   db:
