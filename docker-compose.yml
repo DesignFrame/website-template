@@ -16,7 +16,6 @@ services:
       - site:/var/www/html
       - ./composer.json:/var/www/html/composer.json
       - ./mu-plugin.php:/var/www/html/wp-content/mu-plugins/mu-plugin.php
-      - ./plugin-name:/var/www/html/wp-content/plugins/plugin-name
   db:
     image: mariadb
     restart: always
