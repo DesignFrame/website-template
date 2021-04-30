@@ -5,7 +5,7 @@ This is a website repository. It houses all of the files and configuration neces
 ## Setup
 
 1. Clone this repository
-1. Run `docker-compose up -d && docker-compose composer composer install`. This will setup the container, and install
+1. Run `docker-compose up -d && docker-compose run composer composer install`. This will setup the container, and install
    the libraries included in `composer.json`
 1. Visit `localhost:3000` to set up and run this website.
 
