@@ -9,7 +9,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wp
-      WORDPRESS_DB_PASSWORD: ex015PECT+doc
+      WORDPRESS_DB_PASSWORD: change_me
       WORDPRESS_DB_NAME: wp
       WORDPRESS_TABLE_PREFIX: wp_
     volumes:
@@ -42,7 +42,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wp
-      WORDPRESS_DB_PASSWORD: ex015PECT+doc
+      WORDPRESS_DB_PASSWORD: change_me
       WORDPRESS_DB_NAME: wp
       WORDPRESS_TABLE_PREFIX: wp_
     volumes:
