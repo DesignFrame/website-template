@@ -41,7 +41,7 @@ are added](#adding-a-custom-plugin-or-theme)
 ## Adding a Custom Plugin or Theme
 
 A common situation for a custom site is to have custom themes and plugins. You'll notice that there is no `wp-content`
-directory in this plugin, and that's because it's built directly into the WordPress container. This is done this way to
+directory in this repository, and that's because it's built directly into the WordPress container. This is done this way to
 keep the files in this repository minimal. Only files that are _custom to this website_ or _configuration for this site_
 should exist in this repository.
 
