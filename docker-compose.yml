@@ -1,0 +1,53 @@
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8001:80
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: ex015PECT+doc
+      WORDPRESS_DB_NAME: wp
+      WORDPRESS_TABLE_PREFIX: wp_
+    volumes:
+      - site:/var/www/html
+      - ./composer.json:/var/www/html/composer.json
+      - ./mu-plugin.php:/var/www/html/wp-content/mu-plugins/mu-plugin.php
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: wp
+      MYSQL_USER: wp
+      MYSQL_PASSWORD: ex015PECT+doc
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+  composer:
+    image: composer/composer
+    working_dir: /var/www/html
+    volumes:
+      - ~/.ssh:/home/user/.ssh:ro
+      - site:/var/www/html
+      - ./composer.json:/var/www/html/composer.json
+  cli:
+    image: wordpress:cli
+    working_dir: /var/www/html
+    depends_on:
+      - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: ex015PECT+doc
+      WORDPRESS_DB_NAME: wp
+      WORDPRESS_TABLE_PREFIX: wp_
+    volumes:
+      - site:/var/www/html
+
+volumes:
+  site:
+  db:

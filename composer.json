@@ -1,0 +1,30 @@
+{
+    "name": "dfs/project",
+    "description": "DFS custom website",
+    "authors": [
+        {
+            "name": "Alex Standiford",
+            "email": "alex@designframesolutions.com"
+        }
+    ],
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "wp-content/plugins/{$name}/": ["type:wpackagist-plugin", "type:wordpress-plugin"],
+            "wp-content/themes/{$name}/": ["type:wpackagist-theme","type:wordpress-theme"],
+            "wp-content/mu-plugins/vendor/{$vendor}/{$name}": ["type:wordpress-muplugin"]
+        }
+    },
+    "require": {
+        "alexstandiford/underpin": "^1.1"
+    }
+}
