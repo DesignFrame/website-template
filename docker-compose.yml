@@ -31,12 +31,11 @@ services:
     image: composer/composer
     working_dir: /var/www/html
     volumes:
-      - ~/.ssh:/home/user/.ssh:ro
       - site:/var/www/html
       - ./composer.json:/var/www/html/composer.json
+      - ./auth.json:/tmp/auth.json
   cli:
     image: wordpress:cli
-    working_dir: /var/www/html
     depends_on:
       - wordpress
     environment:

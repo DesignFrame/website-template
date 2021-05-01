@@ -9,6 +9,14 @@ This is a website repository. It houses all of the files and configuration neces
    the libraries included in `composer.json`
 1. Visit `localhost:3000` to set up and run this website.
 
+## Set up Composer authentication
+
+In-order to access private repositories on GitHub, you must add an auth token to `auth.json` first.
+
+1. Copy `auth-template.json` as `auth.json`
+1. visit [this page](https://github.com/settings/tokens/new?scopes=repo&description=composer+dfs-template) to create a new token
+1. Copy the token set the value of `github.com` to your token.
+
 ## Composer
 
 You can install Composer packages, as well as WordPress plugins and themes with Composer. All plugins and themes should
@@ -25,7 +33,35 @@ file's `require` object:
 }
 ```
 
-Once the package is added to `composer.json`, install it by running `docker-compose run composer composer require`.
+Once the package is added to `composer.json`, install it by running `docker-compose run composer composer update`.
+
+Private repositories require a little more. It will not work unless you have set up your `auth.json` file, detailed [here](#set-up-composer-authentication).
+
+```json
+  "repositories":[
+    ...
+    {
+      "type": "vcs",
+      "url": "git@github.com:DesignFrame-Registry/repository-name'",
+      "reference": "master"
+    }
+    ...
+  ],
+```
+
+Require would have something like:
+
+```json
+  "require": {
+    ...
+    "designframe/repository-name": "dev-master",
+  }
+```
+
+The package name in require is always equal to the package name defined in the repository you're trying to pull's
+`composer.json` file. Check out [Composer's Documentation](https://getcomposer.org/doc/05-repositories.md#vcs)
+for more info on how to set up a VCS as a source for Composer.
+
 
 ## WP CLI
 
