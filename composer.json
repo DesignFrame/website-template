@@ -16,11 +16,6 @@
         "wpackagist-theme/*"
       ]
     },
-    {
-      "type": "vcs",
-      "url": "git@github.com:DesignFrame-Registry/edd-recurring",
-      "reference": "master"
-    }
   ],
   "extra": {
     "installer-paths": {
@@ -30,8 +25,6 @@
     }
   },
   "require": {
-    "alexstandiford/underpin": "^1.1",
-    "designframe/edd-recurring-plugin": "dev-master",
-    "wpackagist-plugin/easy-digital-downloads": "*"
+    "alexstandiford/underpin": "^1.1"
   }
 }
