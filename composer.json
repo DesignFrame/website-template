@@ -15,7 +15,7 @@
         "wpackagist-plugin/*",
         "wpackagist-theme/*"
       ]
-    },
+    }
   ],
   "extra": {
     "installer-paths": {
