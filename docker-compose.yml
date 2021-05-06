@@ -1,6 +1,6 @@
 services:
   wordpress:
-    image: wordpress
+    build: wpdev
     restart: always
     ports:
       - 3000:80
@@ -8,22 +8,30 @@ services:
       - db
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: wp
-      WORDPRESS_DB_PASSWORD: change_me
+      WORDPRESS_DB_USER: db_user
+      WORDPRESS_DB_PASSWORD: db_password
       WORDPRESS_DB_NAME: wp
       WORDPRESS_TABLE_PREFIX: wp_
+      WORDPRESS_DEBUG: 1
+    secrets:
+      - db_user
+      - db_password
     volumes:
       - site:/var/www/html
       - ./composer.json:/var/www/html/composer.json
       - ./mu-plugin.php:/var/www/html/wp-content/mu-plugins/mu-plugin.php
+      - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
   db:
     image: mariadb
     restart: always
     environment:
       MYSQL_DATABASE: wp
-      MYSQL_USER: wp
-      MYSQL_PASSWORD: wp-test
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    secrets:
+      - db_user
+      - db_password
     volumes:
       - db:/var/lib/mysql
 
@@ -33,19 +41,27 @@ services:
     volumes:
       - site:/var/www/html
       - ./composer.json:/var/www/html/composer.json
-      - ./auth.json:/tmp/auth.json
+      - ./config/auth.json:/tmp/auth.json
   cli:
     image: wordpress:cli
     depends_on:
       - wordpress
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: wp
-      WORDPRESS_DB_PASSWORD: change_me
+      WORDPRESS_DB_USER: db_user
+      WORDPRESS_DB_PASSWORD: db_password
       WORDPRESS_DB_NAME: wp
       WORDPRESS_TABLE_PREFIX: wp_
+    secrets:
+      - db_user
+      - db_password
     volumes:
       - site:/var/www/html
 volumes:
   site:
   db:
+secrets:
+  db_user:
+    file: ./config/db_user.txt
+  db_password:
+    file: ./config/db_password.txt

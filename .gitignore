@@ -1,1 +1,3 @@
-auth.json
+config/auth.json
+config/db_password.txt
+config/db_user.txt
